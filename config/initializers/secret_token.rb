@@ -10,3 +10,9 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 Pinteresting::Application.config.secret_key_base = '97c3c69e8d68600c62258ca79fc5f6560ebe3eed3d6a9fbe1a2cfd6defdda7b6bea8570bfc778892a1eaa34e7f38f2ecbc18a69f63ac339030ac8aed58dfd58e'
+secret = ENV['MYAPP_SECRET']
+if secret.nil? || secret.length < 30
+  puts "Secret token cannot be loaded"
+else
+  Myapp::Application.config.secret_key_base = secret
+end
